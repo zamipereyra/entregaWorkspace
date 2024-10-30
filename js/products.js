@@ -116,9 +116,14 @@ function cargar(item){
         mostrador.style.transform ='translateX(-6vw)';
         seleccion.style.width = "30%";
         seleccion.style.opacity = "1";
-        seleccion.style.border = "1px solid black";
+        if(localStorage.getItem('theme') === 'night'){
+            seleccion.style.border = "1px solid white";
+            item.style.border = "1px solid white"; 
+        } else {
+            seleccion.style.border = "1px solid black";
+            item.style.border = "1px solid black"; 
+        }
         seleccion.style.zIndex = "10"; 
-        item.style.border = "1px solid black"; 
         /*Aparezca la imagen seleccionada en el recuadro*/
         imgSeleccionada.src = item.getElementsByTagName("img")[0].src;
         modeloSeleccionado.innerHTML =  item.getElementsByTagName("h2")[0].innerHTML;
@@ -146,7 +151,14 @@ function cerrar() {
 
 function quitarBordes() {
     var items = document.getElementsByClassName("card");
-    for (i = 0; i < items.length; i++) {
-        items[i].style.border = "1px solid lightgray";
+    if (localStorage.getItem('theme') === 'night') {
+        for (i = 0; i < items.length; i++) {
+            items[i].style.border = "1px solid #444444";
+        }
+    } else {
+        for (i = 0; i < items.length; i++) {
+            items[i].style.border = "1px solid lightgray";
+        }
     }
+    
 }
